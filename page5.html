@@ -2,54 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Special Video Memory</title>
   <style>
-    body {
+    * {
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden; /* ✅ Removes scrollbars */
       font-family: 'Poppins', sans-serif;
-      background: #f0f8ff;
-      color: #333;
+      background-color: #f0f8ff;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;  /* ✅ Keep content vertically centered */
-      height: 100vh;
-      overflow: hidden;
+      justify-content: center; /* ✅ Perfect vertical centering */
     }
 
     h2 {
       color: #0077cc;
       margin-bottom: 20px;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
+      text-align: center;
     }
 
     .video-wrapper {
-      width: 300px;              /* ✅ REEL STYLE: Narrow width */
-      height: 533px;             /* ✅ REEL STYLE: 9:16 aspect ratio */
-      max-width: 90vw;           /* ✅ Responsive fallback */
-      max-height: 80vh;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      width: 300px;            /* ✅ Reel-style narrow video */
+      height: 533px;           /* ✅ 9:16 aspect ratio */
+      max-width: 90vw;
+      max-height: 90vh;
       border-radius: 15px;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       background: #000;
     }
 
     .video-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    button {
-      margin-top: 25px;
-      padding: 10px 20px;
-      background-color: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
+      width:
