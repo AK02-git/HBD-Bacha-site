@@ -59,32 +59,5 @@ button:hover {
 .gallery img:hover {
   transform: scale(1.1);
 }
-.video-gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin-top: 40px;
-  width: 100%;
-  max-width: 800px;
-}
-
-.video-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.video-card video {
-  width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.caption {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: #444;
-  font-style: italic;
-}
 
 
