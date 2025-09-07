@@ -1,59 +1,62 @@
-/* General Page Styles */
+/* 🎨 Background Gradient */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-  color: #333;
-  text-align: center;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background-size: 800% 800%;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  animation: gradientShift 15s ease infinite;
 }
 
-/* Headings */
-h1, h2 {
-  color: #ff4081;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Buttons / Links */
-a, button {
-  background: #ff4081;
-  color: white;
-  text-decoration: none;
+/* ✨ Text Glow */
+h1, h2, p {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff3399, 0 0 30px #ff66cc;
+}
+
+/* Buttons */
+button {
   padding: 12px 24px;
-  margin: 10px;
-  border-radius: 30px;
-  display: inline-block;
-  transition: transform 0.3s, background 0.3s;
+  border: none;
+  border-radius: 25px;
+  background: #ff3399;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 51, 153, 0.6);
+  transition: transform 0.3s;
 }
-a:hover, button:hover {
-  background: #e73370;
-  transform: scale(1.05);
+button:hover {
+  transform: scale(1.1);
+  background: #ff66cc;
 }
 
-/* Gallery (page4.html) */
+/* Gallery */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
-  margin: 30px;
 }
 .gallery img {
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  width: 200px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.6);
   transition: transform 0.3s;
 }
 .gallery img:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-/* Countdown (index.html) */
-#countdown {
-  font-size: 2em;
-  color: #444;
-  margin: 20px 0;
-}
