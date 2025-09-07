@@ -1,52 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Countdown ⏳</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      overflow: hidden; /* prevent scrollbars */
-      flex-direction: column;
-    }
-    #countdown {
-      font-size: 6rem;
-      font-weight: bold;
-      z-index: 10;
-      position: relative;
-    }
-    /* Hide iframe but keep playing */
-    #bg-music {
-      position: fixed;
-      width: 1px;
-      height: 1px;
-      left: -10000px;
-      top: auto;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: -1;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="countdown">10</div>
-
-  <!-- Hidden YouTube iframe with autoplay & loop -->
-  <iframe
-    id="bg-music"
-    src="https://www.youtube.com/embed/0Lk7Rif05tI?autoplay=1&loop=1&playlist=0Lk7Rif05tI&controls=0&mute=0&disablekb=1&modestbranding=1&iv_load_policy=3"
-    frameborder="0"
-    allow="autoplay"
-    allowfullscreen
-  ></iframe>
+  <div id="countdown" style="font-size:6rem; font-weight:bold; color:#fff;">10</div>
 
   <script>
     let count = 10;
@@ -62,5 +22,6 @@
       }
     }, 1000);
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
