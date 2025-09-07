@@ -1,69 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hall of Memories</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Poppins', sans-serif;
-      background: #fff0f5;
-      text-align: center;
-    }
-    h2 {
-      margin-bottom: 20px;
-      color: #ff4d6d;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    button {
-      margin-top: 30px;
-      padding: 12px 25px;
-      background: #ff4d6d;
-      border: none;
-      color: white;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #e6004c;
-    }
-  </style>
+  <title>Memories 📸</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>The Hall of Memories 💕</h2>
-  <div class="gallery">
-    <img src="photo1.jpg" alt="Memory 1">
-    <img src="photo2.jpg" alt="Memory 2">
-    <img src="photo3.jpg" alt="Memory 3">
-    <img src="photo4.jpg" alt="Memory 4">
-    <img src="photo5.jpg" alt="Memory 5">
-    <img src="photo6.jpg" alt="Memory 6">
-    <img src="photo7.jpg" alt="Memory 7">
-    <img src="photo8.jpg" alt="Memory 8">
-  </div>
-  <button onclick="window.location.href='index.html'">Start Again</button>
+  <section>
+    <h2>📸 Our Beautiful Memories</h2>
+    <div class="gallery">
+      <img src="photo1.jpg" alt="Memory 1">
+      <img src="photo2.jpg" alt="Memory 2">
+      <img src="photo3.jpg" alt="Memory 3">
+      <img src="photo4.jpg" alt="Memory 4">
+      <img src="photo5.jpg" alt="Memory 5">
+      <img src="photo6.jpg" alt="Memory 6">
+      <img src="photo7.jpg" alt="Memory 7">
+      <img src="photo8.jpg" alt="Memory 8">
+      <img src="photo9.jpg" alt="Memory 9">
+      <img src="photo10.jpg" alt="Memory 10">
+    </div>
+    <p>💖 More memories to come... 💖</p>
+  </section>
+
   <script src="script.js"></script>
+  <script>
+    // 🎉 Confetti jab gallery open ho
+    launchConfetti();
+  </script>
 </body>
 </html>
