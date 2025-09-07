@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Happy Birthday 🎂</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    /* Paste updated CSS here */
     body {
       display: flex;
       justify-content: center;
@@ -26,35 +26,13 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 8vw; /* ✅ Responsive heading size */
       color: #ff4d6d;
-      line-height: 1.1;
     }
 
     p {
-      font-size: 1.25rem;
+      font-size: 5vw; /* ✅ Responsive paragraph size */
       color: #333;
-      max-width: 400px;
-    }
-
-    @media (min-width: 480px) {
-      h1 {
-        font-size: 3.5rem;
-      }
-
-      p {
-        font-size: 1.5rem;
-      }
-    }
-
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 4.5rem;
-      }
-
-      p {
-        font-size: 1.75rem;
-      }
     }
 
     button {
@@ -66,11 +44,21 @@
       border-radius: 25px;
       cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s ease;
     }
 
     button:hover {
       background-color: #e6004c;
+    }
+
+    /* ✅ Optional: Cap font size on larger screens */
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 48px;
+      }
+
+      p {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -80,5 +68,7 @@
     <p>Wishing you endless happiness, smiles, and love today and always 💖</p>
     <button onclick="window.location.href='page3.html'">Next ➡️</button>
   </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
