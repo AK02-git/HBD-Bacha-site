@@ -28,6 +28,12 @@
       font-weight: bold;
       max-width: 90%;
       line-height: 1.2;
+      color: #ff4d6d;
+      -webkit-text-stroke: 1px black; /* black border */
+      text-stroke: 1px black;
+      text-shadow:
+        4px 4px 8px rgba(0, 0, 0, 0.6),
+        -2px -2px 8px rgba(0, 0, 0, 0.6);
     }
 
     .gallery {
@@ -114,7 +120,7 @@
   </style>
 </head>
 <body>
-  <h2>The Hall of Memories 💕</h2>
+  <center><h2>The Hall of Memories 💕</h2></center>
 
   <div class="gallery">
     <img src="photo1.jpg" alt="Memory 1" />
@@ -129,7 +135,7 @@
     <img src="photo12.jpg" alt="Memory 10" />
   </div>
 
-  <button onclick="window.location.href='page5.html'">🔄 At Last</button>
+  <button onclick="window.location.href='page5.html'"> At Last</button>
 
   <!-- Lightbox container -->
   <div id="lightbox" onclick="hideLightbox()">
