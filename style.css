@@ -1,0 +1,59 @@
+/* General Page Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  color: #333;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Headings */
+h1, h2 {
+  color: #ff4081;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Buttons / Links */
+a, button {
+  background: #ff4081;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  margin: 10px;
+  border-radius: 30px;
+  display: inline-block;
+  transition: transform 0.3s, background 0.3s;
+}
+a:hover, button:hover {
+  background: #e73370;
+  transform: scale(1.05);
+}
+
+/* Gallery (page4.html) */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 30px;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Countdown (index.html) */
+#countdown {
+  font-size: 2em;
+  color: #444;
+  margin: 20px 0;
+}
