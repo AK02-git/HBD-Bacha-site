@@ -14,24 +14,26 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* ✅ EDITED: Center content vertically */
-      height: 100vh;           /* ✅ EDITED: Prevent scrolling */
-      overflow: hidden;        /* ✅ EDITED: Hide scrollbars */
+      justify-content: center;  /* ✅ Keep content vertically centered */
+      height: 100vh;
+      overflow: hidden;
     }
 
     h2 {
       color: #0077cc;
-      margin-bottom: 20px; /* ✅ EDITED: Reduced margin */
-      font-size: 1.8rem;   /* ✅ EDITED: Slightly smaller title */
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
 
     .video-wrapper {
-      width: 80%;               /* ✅ EDITED: Smaller width */
-      max-width: 480px;         /* ✅ EDITED: Limit width for small screens */
-      aspect-ratio: 16 / 9;     /* ✅ EDITED: Maintain 16:9 ratio */
+      width: 300px;              /* ✅ REEL STYLE: Narrow width */
+      height: 533px;             /* ✅ REEL STYLE: 9:16 aspect ratio */
+      max-width: 90vw;           /* ✅ Responsive fallback */
+      max-height: 80vh;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      border-radius: 10px;
+      border-radius: 15px;
       overflow: hidden;
+      background: #000;
     }
 
     .video-wrapper iframe {
@@ -41,8 +43,8 @@
     }
 
     button {
-      margin-top: 25px;             /* ✅ EDITED: Reduced margin */
-      padding: 10px 20px;           /* ✅ EDITED: Smaller padding */
+      margin-top: 25px;
+      padding: 10px 20px;
       background-color: #0077cc;
       color: white;
       border: none;
@@ -51,28 +53,3 @@
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #005fa3;
-    }
-  </style>
-</head>
-<body>
-
-  <h2>Special Video Memory 🎞️</h2>
-
-  <div class="video-wrapper">
-    <!-- Replace the YouTube link below with your video embed URL -->
-    <iframe 
-      src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-      title="Embedded Video" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <button onclick="window.location.href='index.html'">🔁 Start Over</button> <!-- ✅ EDITED: Button text changed -->
-
-</body>
-</html>
