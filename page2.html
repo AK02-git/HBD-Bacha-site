@@ -1,24 +1,74 @@
-<style>
-  h1 {
-    font-size: 8vw; /* Responsive heading size */
-    color: #ff4d6d;
-    -webkit-text-stroke: 1.5px black; /* black border */
-    text-stroke: 1.5px black; /* for some browsers */
-    text-shadow:
-      1px 1px 0 black,
-     -1px 1px 0 black,
-      1px -1px 0 black,
-     -1px -1px 0 black; /* fallback shadow */
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday 🎂</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff0f5;
+    }
 
-  button {
-    padding: 12px 24px;
-    font-size: 1.8rem; /* increased size */
-    background-color: #ff4d6d;
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-</style>
+    section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      max-width: 90%;
+    }
+
+    h1 {
+      font-size: 8vw; /* ✅ Responsive heading size */
+      color: #ff4d6d;
+    }
+
+    p {
+      font-size: 5vw; /* ✅ Responsive paragraph size */
+      color: #333;
+    }
+
+    button {
+      padding: 20px 40px;
+      font-size: 1.6rem;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #e6004c;
+    }
+
+    /* ✅ Optional: Cap font size on larger screens */
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 48px;
+      }
+
+      p {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h1>🎂 Happy Birthday My Love 🎂</h1>
+    <h2>Wishing you endless happiness, smiles, and love today and always 💖</h2>
+    <button onclick="window.location.href='page3.html'">Next </button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
