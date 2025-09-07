@@ -2,59 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday Countdown</title>
+  <title>Countdown ⏳</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-      background-size: 800% 800%;
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-      animation: gradientShift 15s ease infinite;
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .countdown {
-      font-size: 7rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff3399, 0 0 60px #ff66cc;
-      animation: glow 1s ease-in-out infinite alternate;
-      z-index: 2;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff3399; }
-      to { text-shadow: 0 0 30px #ff66cc, 0 0 60px #ff99ff; }
-    }
-
-    .fade-out {
-      animation: fadeOut 1s forwards;
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-  </style>
 </head>
 <body>
-  <div id="countdown" class="countdown">10</div>
+  <div id="countdown" style="font-size:6rem; font-weight:bold; color:#fff;">10</div>
 
   <script>
     let count = 10;
     const countdownElement = document.getElementById("countdown");
-
     const timer = setInterval(() => {
       count--;
       if (count >= 0) {
@@ -62,44 +18,10 @@
       }
       if (count < 0) {
         clearInterval(timer);
-        
-        // 🎉 Add confetti effect before redirect
-        launchConfetti();
-
-        countdownElement.textContent = "🎉 Happy Birthday! 🎂";
-        countdownElement.classList.add("fade-out");
-
-        setTimeout(() => {
-          window.location.href = "page2.html";
-        }, 3000); // wait 3s before redirect
+        window.location.href = "page2.html";
       }
     }, 1000);
-
-    // Simple confetti burst
-    function launchConfetti() {
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement("div");
-        confetti.innerHTML = "🎉";
-        confetti.style.position = "fixed";
-        confetti.style.left = Math.random() * window.innerWidth + "px";
-        confetti.style.top = -50 + "px";
-        confetti.style.fontSize = "20px";
-        confetti.style.animation = "fall 3s linear forwards";
-        document.body.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 3000);
-      }
-    }
-
-    const style = document.createElement("style");
-    style.innerHTML = `
-    @keyframes fall {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(100vh); opacity: 0; }
-    }`;
-    document.head.appendChild(style);
   </script>
-
   <script src="script.js"></script>
 </body>
 </html>
