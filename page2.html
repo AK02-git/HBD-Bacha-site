@@ -26,9 +26,16 @@
     }
 
     h1 {
-      font-size: 8vw; /* ✅ Responsive heading size */
-      color: #ff4d6d;
-    }
+    font-size: 8vw; /* Responsive heading size */
+    color: #ff4d6d;
+    -webkit-text-stroke: 1.5px black; /* black border */
+    text-stroke: 1.5px black; /* for some browsers */
+    text-shadow:
+      1px 1px 0 black,
+     -1px 1px 0 black,
+      1px -1px 0 black,
+     -1px -1px 0 black; /* fallback shadow */
+  }
 
     p {
       font-size: 5vw; /* ✅ Responsive paragraph size */
