@@ -43,21 +43,38 @@
       text-align: center;
     }
 
-    #startScreen img {
-      width: 230px;
+    .teddy-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .teddy-wrapper img {
+      width: 250px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-    #startScreen img:hover {
-      transform: scale(1.08);
+    .teddy-wrapper img:hover {
+      transform: scale(1.05);
     }
+
+    /* Tap text inside heart */
     #tapText {
       position: absolute;
+      bottom: 28%; /* teddy ke heart ke approx position */
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 1.3rem;
       font-weight: bold;
       color: white;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-      margin-top: 120px; /* text on teddy's heart */
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      animation: pulse 1.5s infinite;
+      pointer-events: none; /* taaki click teddy par ho */
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.2); }
+      100% { transform: translateX(-50%) scale(1); }
     }
 
     /* Countdown */
@@ -83,12 +100,14 @@
   <div class="heart" style="left:50%; animation-delay:4s;"></div>
   <div class="heart" style="left:70%; animation-delay:1s;"></div>
   <div class="heart" style="left:90%; animation-delay:3s;"></div>
-  
+
   <!-- Start Screen -->
-<div id="startScreen">
-  <img id="teddy" src="teddy.png" alt="Tap Teddy">
-  <div id="tapText">💖 Tap Here 💖</div>
-</div>
+  <div id="startScreen">
+    <div class="teddy-wrapper">
+      <img id="teddy" src="teddy.png" alt="Tap Teddy">
+      <div id="tapText">💖 Tap Here 💖</div>
+    </div>
+  </div>
 
   <!-- Countdown -->
   <div id="countdown">10</div>
@@ -99,18 +118,13 @@
     const countdownEl = document.getElementById("countdown");
 
     document.getElementById("teddy").addEventListener("click", () => {
-      // Play music once
       if (music.paused) {
         music.play();
       }
 
-      // Hide teddy screen
       startScreen.style.display = "none";
-
-      // Show countdown
       countdownEl.style.display = "block";
 
-      // Start countdown
       let count = 10;
       countdownEl.textContent = count;
       const timer = setInterval(() => {
