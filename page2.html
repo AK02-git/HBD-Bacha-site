@@ -4,15 +4,20 @@
   <meta charset="UTF-8">
   <title>Happy Birthday 🎂</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Font Import (Optional but nice) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      height: 100dvh;
-      width: 100vw;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -20,28 +25,49 @@
       font-family: 'Poppins', sans-serif;
       overflow: hidden;
       padding: 20px;
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      background: linear-gradient(270deg, #ffdde1, #ee9ca7, #ffd6d6, #fcb0b3);
+      background-size: 800% 800%;
+      animation: gradientShift 15s ease infinite;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     section {
       max-width: 90%;
+      z-index: 2;
     }
 
     h1 {
-      font-size: clamp(28px, 8vw, 60px);
-      font-weight: bold;
-      background: linear-gradient(45deg, #ff4d6d, #ff80ab);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+      font-size: clamp(32px, 7vw, 64px);
+      font-family: 'Pacifico', cursive;
+      color: #fff;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
       margin-bottom: 15px;
+      animation: popIn 1s ease-out forwards;
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     h2 {
-      font-size: clamp(18px, 5vw, 28px);
-      color: #333;
-      line-height: 1.4;
-      margin-bottom: 25px;
+      font-size: clamp(20px, 5vw, 28px);
+      color: #fff;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     button {
@@ -53,8 +79,8 @@
       cursor: pointer;
       font-weight: bold;
       font-size: 1.2rem;
-      transition: transform 0.2s ease, background 0.3s ease;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
     button:hover {
@@ -63,7 +89,29 @@
     }
 
     button:active {
-      transform: scale(0.97);
+      transform: scale(0.95);
+    }
+
+    /* Floating Emojis */
+    .emoji {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.8;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(30px);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -74,9 +122,25 @@
     Your browser does not support the audio element.
   </audio>
 
+  <!-- Floating Emojis -->
+  <script>
+    const emojis = ["🎂", "🎉", "💖", "🥳", "🎈", "🌸"];
+    const count = 25;
+
+    for (let i = 0; i < count; i++) {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDelay = Math.random() * 10 + "s";
+      emoji.style.fontSize = (Math.random() * 1.5 + 1.5) + "rem";
+      document.body.appendChild(emoji);
+    }
+  </script>
+
   <section>
     <h1>🎂 Happy Birthday Bachaa 🎂</h1>
-    <h2>Wishing you endless happiness, smiles <br> and love today and always 💖</h2>
+    <h2>May your day be filled with joy, magic, hugs, cake, and endless love 💖 You deserve all the happiness in the world!</h2>
     <button onclick="window.location.href='page3.html'">Next</button>
   </section>
 </body>
