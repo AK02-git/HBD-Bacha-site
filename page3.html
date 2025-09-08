@@ -15,6 +15,7 @@
 
     body {
       margin: 0;
+      overflow: hidden;
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -22,6 +23,7 @@
       background: linear-gradient(135deg, #ffe6f2, #fff0f5);
       font-family: 'Poppins', sans-serif;
       padding: 20px;
+      position: relative;
     }
 
     .card {
@@ -32,6 +34,8 @@
       border-radius: 25px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       animation: fadeIn 1s ease-in-out;
+      position: relative;
+      z-index: 10;
     }
 
     h2 {
@@ -40,21 +44,6 @@
       font-size: 2.8rem;
       text-align: center;
       font-family: 'Great Vibes', cursive;
-      position: relative;
-    }
-
-    h2::after {
-      content: "💖";
-      position: absolute;
-      right: -30px;
-      top: 10px;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
     }
 
     .message {
@@ -67,6 +56,7 @@
       border-radius: 15px;
       border-left: 4px solid #ff4d6d;
       margin-top: 20px;
+      min-height: 300px;
     }
 
     .signature {
@@ -103,6 +93,32 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Floating Hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Love_Heart_SVG.svg/1200px-Love_Heart_SVG.svg.png') no-repeat center;
+      background-size: contain;
+      animation: float 10s infinite linear;
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+      }
+    }
+
     @media (max-width: 480px) {
       h2 {
         font-size: 2.2rem;
@@ -119,44 +135,29 @@
 </head>
 <body>
 
+<!-- Background music -->
 <audio id="bg-music" autoplay loop>
   <source src="audio1.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
+<!-- Floating hearts -->
+<script>
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (6 + Math.random() * 5) + 's';
+    heart.style.opacity = Math.random();
+    document.body.appendChild(heart);
+  }
+</script>
+
 <div class="card">
-  <h2>My Dearest Love</h2>
-  <h2>A Little Note</h2>
+  <h2>My Dearest Love ❤️</h2>
+  <h2>💌 A Little Note</h2>
 
-  <div class="message">
-    Hii Bacha, so finally hum iss year apke sath hai apke birthday par 😁♥️  
-    It is the thing that I am waiting from so long 🤩  
-
-    But still thora sa sad hu bcz I wish I could be there with you,  
-    holding you close on your birthday 🤗🤗  
-
-    But believe me Baby,  
-    I love you more than words could ever say ♥️😘  
-
-    And apko toh pata hi hai I’m not perfect at expressing myself 🫣,  
-    yet the way you’ve loved and cared for me feels like a beautiful dream 💕 ✨  
-
-    Bas ha thora thora jyda jhagar leti ho 😝  
-    Baki you are perfect — cute, beautiful, hottt, all in one 🔥❤️  
-
-    I have never seen such a beauty in my life  
-    means kaise bhi ho — ap sote hue, bina ready hue —  
-    humesha sundarrr hi dikhte ho Bacha 😅😘  
-
-    Today, I wish you oceans of happiness, endless health, and infinite joy 🥳  
-    And I promise and hope Bacha, we will celebrate countless birthdays together, hand in hand 😍  
-
-    You are the most special person in my life.  
-    On your b'day, I just want to rewind u how much u mean to me 💕  
-
-    Every moment with u is a blessing 😘  
-    Happy Birthday Jaan 🎂🎉🎁😘
-  </div>
+  <div class="message" id="typed-message"></div>
 
   <div class="signature">
     Forever Yours ♥️,<br>
@@ -166,6 +167,62 @@
   <button onclick="window.location.href='page4.html'">Click Here</button>
 </div>
 
-<script src="script.js"></script>
+<!-- Typing Animation & Music Fade -->
+<script>
+  const message = `
+Hii Bacha, so finally hum iss year apke sath hai apke birthday par 😁♥️  
+It is the thing that I am waiting from so long 🤩  
+
+But still thora sa sad hu bcz I wish I could be there with you,  
+holding you close on your birthday 🤗🤗  
+
+But believe me Baby,  
+I love you more than words could ever say ♥️😘  
+
+And apko toh pata hi hai I’m not perfect at expressing myself 🫣,  
+yet the way you’ve loved and cared for me feels like a beautiful dream 💕 ✨  
+
+Bas ha thora thora jyda jhagar leti ho 😝  
+Baki you are perfect — cute, beautiful, hottt, all in one 🔥❤️  
+
+I have never seen such a beauty in my life  
+means kaise bhi ho — ap sote hue, bina ready hue —  
+humesha sundarrr hi dikhte ho Bacha 😅😘  
+
+Today, I wish you oceans of happiness, endless health, and infinite joy 🥳  
+And I promise and hope Bacha, we will celebrate countless birthdays together, hand in hand 😍  
+
+You are the most special person in my life.  
+On your b'day, I just want to rewind u how much u mean to me 💕  
+
+Every moment with u is a blessing 😘  
+Happy Birthday Jaan 🎂🎉🎁😘
+`;
+
+  const typedEl = document.getElementById('typed-message');
+  let i = 0;
+
+  function typeWriter() {
+    if (i < message.length) {
+      typedEl.innerHTML += message.charAt(i);
+      i++;
+      setTimeout(typeWriter, 30); // Typing speed
+    }
+  }
+
+  typeWriter();
+
+  // Music fade-in
+  const bgMusic = document.getElementById('bg-music');
+  bgMusic.volume = 0;
+  let fadeInterval = setInterval(() => {
+    if (bgMusic.volume < 1) {
+      bgMusic.volume = Math.min(bgMusic.volume + 0.05, 1);
+    } else {
+      clearInterval(fadeInterval);
+    }
+  }, 300);
+</script>
+
 </body>
 </html>
