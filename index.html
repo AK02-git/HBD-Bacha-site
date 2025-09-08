@@ -52,4 +52,125 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      z-index:
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .teddy-wrapper {
+      position: relative;
+      display: inline-block;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border-radius: 20px;
+    }
+
+    .teddy-wrapper img {
+      width: 260px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+    }
+
+    .teddy-wrapper img:hover {
+      transform: scale(1.07);
+      filter: drop-shadow(0 6px 15px rgba(255, 105, 180, 0.5));
+    }
+
+    #tapText {
+      position: absolute;
+      bottom: 28%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      animation: pulse 1.5s infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.2); }
+      100% { transform: translateX(-50%) scale(1); }
+    }
+
+    #countdown {
+      font-size: 6rem;
+      font-weight: bold;
+      color: #fff;
+      display: none;
+      text-shadow: 3px 3px 20px rgba(0, 0, 0, 0.3);
+      animation: bounceIn 1s ease forwards;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    /* Extra floating hearts */
+    .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 25%; animation-delay: 2s; }
+    .heart:nth-child(3) { left: 40%; animation-delay: 1s; }
+    .heart:nth-child(4) { left: 60%; animation-delay: 3s; }
+    .heart:nth-child(5) { left: 80%; animation-delay: 1.5s; }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop>
+    <source src="audio1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating Hearts -->
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+  <div class="heart"></div>
+
+  <!-- Start Screen -->
+  <div id="startScreen">
+    <div class="teddy-wrapper">
+      <img id="teddy" src="teddy.png" alt="Tap the Teddy">
+      <div id="tapText">💖 Tap Here 💖</div>
+    </div>
+  </div>
+
+  <!-- Countdown Display -->
+  <div id="countdown">10</div>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    const startScreen = document.getElementById("startScreen");
+    const countdownEl = document.getElementById("countdown");
+
+    document.getElementById("teddy").addEventListener("click", () => {
+      if (music.paused) {
+        music.play().catch(e => console.warn("Audio play blocked:", e));
+      }
+
+      startScreen.style.display = "none";
+      countdownEl.style.display = "block";
+
+      let count = 10;
+      countdownEl.textContent = count;
+      const timer = setInterval(() => {
+        count--;
+        if (count >= 0) {
+          countdownEl.textContent = count;
+        }
+        if (count < 0) {
+          clearInterval(timer);
+          document.body.style.transition = "opacity 1s ease";
+          document.body.style.opacity = 0;
+          setTimeout(() => window.location.href = "page2.html", 1000);
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
