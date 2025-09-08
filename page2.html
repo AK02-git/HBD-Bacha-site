@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Happy Birthday 🎂</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -18,16 +17,8 @@
     html, body {
       height: 100%;
       width: 100%;
-      font-family: 'Poppins', sans-serif;
       overflow: hidden;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
+      font-family: 'Poppins', sans-serif;
       background: linear-gradient(270deg, #ffdde1, #ee9ca7, #ffd6d6, #fcb0b3);
       background-size: 800% 800%;
       animation: gradientShift 15s ease infinite;
@@ -40,8 +31,16 @@
       100% { background-position: 0% 50%; }
     }
 
-    section {
-      max-width: 600px;
+    .container {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      position: relative;
       z-index: 2;
     }
 
@@ -49,28 +48,17 @@
       font-size: clamp(28px, 8vw, 60px);
       font-family: 'Pacifico', cursive;
       color: #fff;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-      margin-bottom: 15px;
-      animation: popIn 1s ease-out forwards;
-    }
-
-    @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     }
 
     h2 {
       font-size: clamp(18px, 5vw, 26px);
       color: #fff;
       line-height: 1.6;
-      margin-bottom: 30px;
       text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1.5s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      margin-bottom: 30px;
+      max-width: 90%;
     }
 
     button {
@@ -95,30 +83,32 @@
       transform: scale(0.95);
     }
 
-    /* Floating Emojis */
     .emoji {
       position: absolute;
+      bottom: -3rem;
       font-size: 1.5rem;
-      opacity: 0.75;
-      animation: float 10s linear infinite;
+      opacity: 0.8;
       pointer-events: none;
+      animation: floatUp 10s linear infinite;
     }
 
-    @keyframes float {
+    @keyframes floatUp {
       0% {
-        transform: translateY(100vh) translateX(0);
+        transform: translateY(0) translateX(0);
         opacity: 0;
       }
-      50% {
+      10% {
+        opacity: 1;
+      }
+      90% {
         opacity: 1;
       }
       100% {
-        transform: translateY(-100vh) translateX(30px);
+        transform: translateY(-110vh) translateX(20px);
         opacity: 0;
       }
     }
 
-    /* Responsive Tuning */
     @media (max-width: 480px) {
       h1 {
         font-size: 34px;
@@ -137,33 +127,35 @@
   </style>
 </head>
 <body>
+
   <!-- Background Music -->
   <audio id="bg-music" autoplay loop>
     <source src="audio1.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Floating Emojis (Script-generated) -->
+  <!-- Main Centered Container -->
+  <div class="container">
+    <h1>🎂 Happy Birthday Bachaa 🎂</h1>
+    <h2>Wishing you endless happiness, smiles and love today and always 💖</h2>
+    <button onclick="window.location.href='page3.html'">Next</button>
+  </div>
+
+  <!-- Floating Emojis -->
   <script>
     const emojis = ["🎂", "🎉", "💖", "🥳", "🎈", "🌸"];
-    const emojiCount = 20;
+    const count = 25;
 
-    for (let i = 0; i < emojiCount; i++) {
+    for (let i = 0; i < count; i++) {
       const emoji = document.createElement("div");
       emoji.classList.add("emoji");
       emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       emoji.style.left = Math.random() * 100 + "vw";
       emoji.style.animationDelay = Math.random() * 10 + "s";
-      emoji.style.fontSize = (Math.random() * 1.2 + 1.2) + "rem";
+      emoji.style.fontSize = (Math.random() * 1.5 + 1.2) + "rem";
       document.body.appendChild(emoji);
     }
   </script>
 
-  <!-- Birthday Message -->
-  <section>
-    <h1>🎂 Happy Birthday Bachaa 🎂</h1>
-    <h2>Wishing you endless happiness, smiles and love today and always 💖</h2>
-    <button onclick="window.location.href='page3.html'">Next</button>
-  </section>
 </body>
 </html>
