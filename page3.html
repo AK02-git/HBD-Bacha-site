@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Birthday Note 💌</title>
   <style>
-    /* Reset box sizing */
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -18,44 +17,44 @@
       align-items: center;
       background: #ffe6f2;
       font-family: 'Poppins', sans-serif;
-      padding: 20px; /* padding added for small screens */
+      padding: 20px;
     }
 
     .card {
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
       background: white;
       padding: 30px 25px;
       border-radius: 20px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      text-align: center;
+      text-align: left;
       animation: fadeIn 1s ease-in-out;
-      /* smooth responsive width */
-      box-sizing: border-box;
     }
 
     h2 {
       color: #ff4d6d;
-      margin: 0 0 15px 0;
-      font-size: 2.5rem; /* bigger headings */
-      line-height: 1.2;
-    }
-
-    section h2 {
-      font-size: 1.8rem;
-      margin-top: 0;
       margin-bottom: 15px;
+      font-size: 2.5rem;
+      text-align: center;
     }
 
-    p {
+    .message {
       font-size: 1.1rem;
       color: #333;
-      margin: 10px 0 20px 0;
-      line-height: 1.5;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    .signature {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: right;
+      color: #ff4d6d;
     }
 
     button {
-      margin-top: 15px;
+      margin: 30px auto 0;
       padding: 14px 30px;
       background: #ff4d6d;
       border: none;
@@ -65,68 +64,79 @@
       font-weight: bold;
       font-size: 1.2rem;
       transition: background-color 0.3s ease;
-      width: 100%;
-      max-width: 300px;
+      display: block;
     }
 
     button:hover {
       background: #e6004c;
     }
 
-    /* Responsive adjustments */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 480px) {
-      .card {
-        padding: 20px 15px;
-      }
       h2 {
         font-size: 2rem;
-        -webkit-text-stroke: 1px black; /* black border */
-        text-stroke: 1px black;
-        text-shadow:
-          4px 4px 8px rgba(0, 0, 0, 0.6),
-          -2px -2px 8px rgba(0, 0, 0, 0.6);
       }
-      section h2 {
-        font-size: 1.5rem;
-      }
-      p {
+      .message {
         font-size: 1rem;
       }
       button {
         font-size: 1.1rem;
-        max-width: 100%;
+        width: 100%;
       }
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
-  <audio id="bg-music" autoplay loop>
+
+<audio id="bg-music" autoplay loop>
   <source src="audio1.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-  <div class="card">
-    <h2>My Dearest Love ❤️</h2>
-    <section>
-      <h2>💌 A Little Note</h2>
-      <p>
-        Though my love for you is one-sided, it's pure and endless.<br>
-        I pray God grants you eternal happiness — even if it's not with me.<br>
-        Your rare replies pierce my heart, but I treasure our chats like gems.<br>
-        I'll keep loving you silently, asking only for your wellbeing in my prayers. 💌<br>
-        You are the most special person in my life.<br>
-        On your birthday, I just want to remind you how much you mean to me 💕.<br>
-        Every moment with you is a blessing ✨.
-      </p>
-      <p>Forever Yours,<br>💖 [Your Name]</p>
-      <button onclick="window.location.href='page4.html'">Click Here</button>
-    </section>
+
+<div class="card">
+  <h2>My Dearest Love ❤️</h2>
+  <div class="message">
+    Hii Bacha, so finally hum iss year apke sath hai apke birthday par 😁♥️  
+    It is the thing that I am waiting from so long 🤩  
+
+    But still thora sa sad hu bcz I wish I could be there with you,  
+    holding you close on your birthday 🤗🤗  
+
+    But believe me Baby,  
+    I love you more than words could ever say ♥️😘  
+
+    And apko toh pata hi hai I’m not perfect at expressing myself 🫣,  
+    yet the way you’ve loved and cared for me feels like a beautiful dream 💕 ✨  
+
+    Bas ha thora thora jyda jhagar leti ho 😝  
+    Baki you are perfect — cute, beautiful, hottt, all in one 🔥❤️  
+
+    I have never seen such a beauty in my life  
+    means kaise bhi ho — ap sote hue, bina ready hue —  
+    humesha sundarrr hi dikhte ho Bacha 😅😘  
+
+    Today, I wish you oceans of happiness, endless health, and infinite joy 🥳  
+    And I promise and hope Bacha, we will celebrate countless birthdays together, hand in hand 😍  
+
+    You are the most special person in my life.  
+    On your b'day, I just want to rewind u how much u mean to me 💕  
+
+    Every moment with u is a blessing 😘  
+    Happy Birthday Jaan 🎂🎉🎁😘
   </div>
 
-  <script src="script.js"></script>
+  <div class="signature">
+    Forever Yours ♥️, <br>
+    Aman
+  </div>
+
+  <button onclick="window.location.href='page4.html'">Click Here</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
