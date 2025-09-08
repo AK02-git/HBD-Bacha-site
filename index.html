@@ -3,56 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <title>💖 Countdown Surprise 💖</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffc0cb, #ffe6f2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #startScreen {
+      text-align: center;
+    }
+
+    .teddy-wrapper {
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    #tapText {
+      position: relative;
+      margin-top: -40px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+      animation: pulse 1.5s infinite;
+      pointer-events: none; /* Prevent conflict */
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    #countdown {
+      display: none;
+      font-size: 6rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      animation: bounceIn 1s ease forwards;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
 </head>
 <body>
 
   <!-- Background Music -->
-  <audio id="bg-music" loop>
+  <audio id="bg-music" preload="auto">
     <source src="audio1.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <!-- 🌸 Start Screen -->
-  <div id="startScreen" style="text-align: center;">
-    <div class="teddy-wrapper">
+  <!-- Start Screen -->
+  <div id="startScreen">
+    <div class="teddy-wrapper" id="tapTrigger">
       <img id="teddy" src="teddy.png" alt="Teddy Bear" style="width: 260px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.3s;">
-      <div id="tapText" style="
-        position: relative;
-        margin-top: -40px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: white;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-        animation: pulse 1.5s infinite;
-      ">
-        💖 Tap Me 💖
-      </div>
+      <div id="tapText">💖 Tap Me 💖</div>
     </div>
     <p style="margin-top: 20px; font-size: 1.1rem;">A surprise awaits 🎁</p>
   </div>
 
-  <!-- ⏳ Countdown -->
-  <div id="countdown" style="display: none; font-size: 6rem; font-weight: bold; color: #fff; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); animation: bounceIn 1s ease forwards;"></div>
+  <!-- Countdown -->
+  <div id="countdown">10</div>
 
-  <!-- 🌟 Script Files -->
-  <script src="script.js"></script>
+  <!-- Script -->
   <script>
     const music = document.getElementById("bg-music");
     const startScreen = document.getElementById("startScreen");
     const countdownEl = document.getElementById("countdown");
-    const teddy = document.getElementById("teddy");
+    const tapTrigger = document.getElementById("tapTrigger");
 
-    teddy.addEventListener("click", () => {
-      // Play music
+    tapTrigger.addEventListener("click", () => {
+      // Play music only on tap
       if (music.paused) {
-        music.play().catch(e => console.warn("Autoplay error:", e));
+        music.volume = 0;
+        music.play().then(() => {
+          // Smooth fade in
+          let volume = 0;
+          const fadeIn = setInterval(() => {
+            if (volume < 1) {
+              volume += 0.05;
+              music.volume = Math.min(volume, 1);
+            } else {
+              clearInterval(fadeIn);
+            }
+          }, 200);
+        }).catch(e => console.warn("Autoplay error:", e));
       }
-
-      // Launch confetti
-      launchConfetti();
 
       // Hide teddy & show countdown
       startScreen.style.display = "none";
@@ -72,6 +136,7 @@
           // Smooth fade out before redirect
           document.body.style.transition = "opacity 1s ease";
           document.body.style.opacity = 0;
+
           setTimeout(() => {
             window.location.href = "page2.html";
           }, 1000);
