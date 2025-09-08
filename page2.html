@@ -88,23 +88,24 @@
      2px  2px 6px rgba(0,0,0,0.3); */
 }  
      */
-    h1 {
-  font-size: clamp(18px, 6vw, 42px);
+ h1 {
+  font-size: clamp(20px, 5vw, 40px);
   font-family: 'Pacifico', cursive;
   color: #ffecf2;
   margin-bottom: 20px;
-
-  white-space: normal;
-  word-break: break-word;
   text-align: center;
+  
+  white-space: normal;       /* ✅ Allow wrapping */
+  word-break: break-word;    /* ✅ Prevent overflow */
 
   text-shadow:
     -1px -1px 0 #000,  
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000,
-     2px  2px 6px rgba(0,0,0,0.3);
+     2px  2px 6px rgba(0,0,0,0.3);  /* ✅ Original shadow */
 }
+
 
 h2 {
   font-size: clamp(18px, 5vw, 26px);
