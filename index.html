@@ -1,49 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>💖 Countdown Surprise 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Local overrides specific to index so other pages remain unaffected -->
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffc0cb, #ffe6f2);
+    /* Ensure index start screen centers properly even if style.css is shared across pages */
+    body.gradient-bg {
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      align-items: center;
+      padding: 20px;
+      overflow: auto; /* Allow scrolling if needed */
     }
 
     #startScreen {
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
     }
 
     .teddy-wrapper {
-      cursor: pointer;
+      position: relative;
       display: inline-block;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #teddy {
+      width: 260px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+      display: block;
+    }
+
+    .teddy-wrapper:active #teddy,
+    .teddy-wrapper:focus #teddy {
+      transform: scale(0.98);
     }
 
     #tapText {
       position: relative;
       margin-top: -40px;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
       color: white;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
       animation: pulse 1.5s infinite;
-      pointer-events: none; /* Prevent conflict */
+      pointer-events: none;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.06); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     #countdown {
@@ -52,73 +70,59 @@
       font-weight: bold;
       color: #fff;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-      animation: bounceIn 1s ease forwards;
+      animation: bounceIn 0.6s ease forwards;
+      text-align: center;
     }
 
     @keyframes bounceIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.3);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.05);
-      }
-      70% {
-        transform: scale(0.9);
-      }
-      100% {
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.6); }
+      to { opacity: 1; transform: scale(1); }
     }
+
+    /* make sure audio controls are hidden but accessible for debugging (you can remove controls attr later) */
+    audio#bg-music { display:none; }
   </style>
 </head>
-<body>
+<body class="gradient-bg">
 
   <!-- Background Music -->
-  <audio id="bg-music" preload="auto">
+  <audio id="bg-music" loop>
     <source src="audio1.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Start Screen -->
+  <!-- 🌸 Start Screen -->
   <div id="startScreen">
-    <div class="teddy-wrapper" id="tapTrigger">
-      <img id="teddy" src="teddy.png" alt="Teddy Bear" style="width: 260px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.3s;">
+    <div class="teddy-wrapper" id="teddyWrapper" tabindex="0" aria-label="Tap the teddy to start">
+      <img id="teddy" src="teddy.png" alt="Teddy Bear">
       <div id="tapText">💖 Tap Me 💖</div>
     </div>
-    <p style="margin-top: 20px; font-size: 1.1rem;">A surprise awaits 🎁</p>
+    <p style="margin-top: 8px; font-size: 1.05rem; color: #111;">A surprise awaits 🎁</p>
   </div>
 
-  <!-- Countdown -->
-  <div id="countdown">10</div>
+  <!-- ⏳ Countdown -->
+  <div id="countdown" aria-live="polite"></div>
 
-  <!-- Script -->
+  <!-- Scripts -->
+  <script src="script.js"></script>
   <script>
     const music = document.getElementById("bg-music");
     const startScreen = document.getElementById("startScreen");
     const countdownEl = document.getElementById("countdown");
-    const tapTrigger = document.getElementById("tapTrigger");
+    const teddyWrapper = document.getElementById("teddyWrapper");
 
-    tapTrigger.addEventListener("click", () => {
-      // Play music only on tap
+    function startSequence() {
+      // Play music after user interaction (browser allows it)
       if (music.paused) {
-        music.volume = 0;
-        music.play().then(() => {
-          // Smooth fade in
-          let volume = 0;
-          const fadeIn = setInterval(() => {
-            if (volume < 1) {
-              volume += 0.05;
-              music.volume = Math.min(volume, 1);
-            } else {
-              clearInterval(fadeIn);
-            }
-          }, 200);
-        }).catch(e => console.warn("Autoplay error:", e));
+        music.play().catch(e => console.warn("Autoplay prevented:", e));
       }
 
-      // Hide teddy & show countdown
+      // Visual confetti
+      if (typeof launchConfetti === "function") {
+        launchConfetti();
+      }
+
+      // Hide start and show countdown
       startScreen.style.display = "none";
       countdownEl.style.display = "block";
 
@@ -136,12 +140,20 @@
           // Smooth fade out before redirect
           document.body.style.transition = "opacity 1s ease";
           document.body.style.opacity = 0;
-
           setTimeout(() => {
             window.location.href = "page2.html";
           }, 1000);
         }
       }, 1000);
+    }
+
+    // Allow click OR keyboard "Enter/Space" to start (accessibility)
+    teddyWrapper.addEventListener("click", startSequence);
+    teddyWrapper.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        startSequence();
+      }
     });
   </script>
 </body>
