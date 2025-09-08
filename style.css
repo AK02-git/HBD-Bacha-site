@@ -1,48 +1,56 @@
-/* 🎨 Background Gradient */
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* style.css — safer, non-invasive defaults */
+
+/* root color variables */
+:root{
+  --accent:#ff3399;
+  --accent-2:#ff66cc;
+  --btn-bg:#ff3399;
+  --btn-bg-hover:#ff66cc;
+}
+
+/* Body background gradient is only applied if the page adds .gradient-bg class to <body> */
+body.gradient-bg {
+  min-height: 100vh;
   background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
   background-size: 800% 800%;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
   animation: gradientShift 15s ease infinite;
+  margin: 0;
+  padding: 0;
 }
 
+/* Keep pages free to set their own backgrounds and scrolling */
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* ✨ Text Glow */
+/* Headings default: do not force a color — pages can style headings individually */
 h1, h2, p {
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff3399, 0 0 30px #ff66cc;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
 }
 
-/* Buttons */
+/* Buttons (shared style) */
 button {
   padding: 12px 24px;
   border: none;
   border-radius: 25px;
-  background: #ff3399;
+  background: var(--btn-bg);
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(255, 51, 153, 0.6);
-  transition: transform 0.3s;
+  box-shadow: 0 0 15px rgba(255, 51, 153, 0.18);
+  transition: transform 0.18s ease, background 0.18s ease;
 }
 button:hover {
-  transform: scale(1.1);
-  background: #ff66cc;
+  transform: scale(1.03);
+  background: var(--btn-bg-hover);
 }
 
-/* Gallery */
+/* Gallery fallback styles (pages can override more specific rules) */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -52,12 +60,19 @@ button:hover {
 .gallery img {
   width: 200px;
   height: auto;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255,255,255,0.6);
-  transition: transform 0.3s;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease;
 }
 .gallery img:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
+/* small utility classes */
+.center { text-align: center; }
+.hidden { display: none !important; }
 
+/* Small responsive helpers */
+@media (min-width: 768px){
+  .gallery img { width: 220px; }
+}
