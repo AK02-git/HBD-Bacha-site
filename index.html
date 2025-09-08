@@ -8,26 +8,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* Lock screen to viewport, no scroll */
+    /* Lock to viewport, no scroll */
     body.gradient-bg {
-      height: 100vh;
+      height: 100dvh; /* ✅ dynamic viewport height works better on mobile */
       width: 100vw;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      overflow: hidden; /* 🚫 No scroll */
-      margin: 0;
-      padding: 0;
+      overflow: hidden;
       position: relative;
+      font-family: 'Poppins', sans-serif;
     }
 
-    #startScreen {
-      text-align: center;
+    /* One common container for teddy & countdown */
+    .center-container {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 18px;
+      width: 100%;
+      height: 100%;
+      text-align: center;
       animation: fadeIn 1.2s ease forwards;
     }
 
@@ -52,7 +56,6 @@
     }
 
     #tapText {
-      position: relative;
       margin-top: -36px;
       font-size: 1.3rem;
       font-weight: bold;
@@ -75,7 +78,6 @@
       color: #fff;
       text-shadow: 2px 2px 12px rgba(0,0,0,0.4);
       animation: bounceIn 0.6s ease forwards;
-      text-align: center;
     }
 
     @keyframes bounceIn {
@@ -88,7 +90,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Background floating hearts for beauty */
+    /* Floating background hearts */
     .heart {
       position: absolute;
       bottom: -20px;
@@ -107,34 +109,35 @@
 </head>
 <body class="gradient-bg">
 
-  <!-- Background Music -->
+  <!-- Music -->
   <audio id="bg-music" loop>
     <source src="audio1.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
-  <!-- 🌸 Start Screen -->
-  <div id="startScreen">
-    <div class="teddy-wrapper" id="teddyWrapper" tabindex="0" aria-label="Tap the teddy to start">
-      <img id="teddy" src="teddy.png" alt="Teddy Bear">
-      <div id="tapText">💖 Tap Me 💖</div>
+  <!-- 🌸 Unified Center Container -->
+  <div class="center-container">
+    <!-- Start Screen -->
+    <div id="startScreen">
+      <div class="teddy-wrapper" id="teddyWrapper" tabindex="0">
+        <img id="teddy" src="teddy.png" alt="Teddy Bear">
+        <div id="tapText">💖 Tap Me 💖</div>
+      </div>
+      <p style="margin-top: 8px; font-size: 1.05rem; color: #fff; text-shadow: 1px 1px 6px rgba(0,0,0,0.5);">
+        A surprise awaits 🎁
+      </p>
     </div>
-    <p style="margin-top: 8px; font-size: 1.05rem; color: #fff; text-shadow: 1px 1px 6px rgba(0,0,0,0.5);">
-      A surprise awaits 🎁
-    </p>
+
+    <!-- Countdown -->
+    <div id="countdown"></div>
   </div>
 
-  <!-- ⏳ Countdown -->
-  <div id="countdown" aria-live="polite"></div>
-
-  <!-- Floating background hearts -->
+  <!-- Floating hearts -->
   <div class="heart" style="left:10%;">💖</div>
   <div class="heart" style="left:30%; animation-delay:2s;">💕</div>
   <div class="heart" style="left:50%; animation-delay:4s;">💗</div>
   <div class="heart" style="left:70%; animation-delay:1s;">💓</div>
   <div class="heart" style="left:90%; animation-delay:3s;">💞</div>
 
-  <!-- Scripts -->
   <script src="script.js"></script>
   <script>
     const music = document.getElementById("bg-music");
@@ -143,12 +146,8 @@
     const teddyWrapper = document.getElementById("teddyWrapper");
 
     function startSequence() {
-      if (music.paused) {
-        music.play().catch(e => console.warn("Autoplay prevented:", e));
-      }
-      if (typeof launchConfetti === "function") {
-        launchConfetti();
-      }
+      if (music.paused) music.play().catch(()=>{});
+      if (typeof launchConfetti === "function") launchConfetti();
 
       startScreen.style.display = "none";
       countdownEl.style.display = "block";
@@ -158,26 +157,19 @@
 
       const timer = setInterval(() => {
         count--;
-        if (count >= 0) {
-          countdownEl.textContent = count;
-        }
+        if (count >= 0) countdownEl.textContent = count;
         if (count < 0) {
           clearInterval(timer);
           document.body.style.transition = "opacity 1s ease";
           document.body.style.opacity = 0;
-          setTimeout(() => {
-            window.location.href = "page2.html";
-          }, 1000);
+          setTimeout(()=>window.location.href="page2.html", 1000);
         }
       }, 1000);
     }
 
     teddyWrapper.addEventListener("click", startSequence);
-    teddyWrapper.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        startSequence();
-      }
+    teddyWrapper.addEventListener("keydown", e=>{
+      if (e.key==="Enter"||e.key===" "){ e.preventDefault(); startSequence();}
     });
   </script>
 </body>
