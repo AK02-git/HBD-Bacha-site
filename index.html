@@ -75,4 +75,48 @@
   </audio>
 
   <!-- Start Screen -->
-  <div id="st
+  <div id="startScreen">
+    <div class="teddy-container">
+      <img id="teddy" src="teddy1.webp" alt="Tap Teddy">
+      <div class="tap-text">💖 Tap Here 💖</div>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div id="countdown">10</div>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    const startScreen = document.getElementById("startScreen");
+    const countdownEl = document.getElementById("countdown");
+    const teddy = document.getElementById("teddy");
+
+    teddy.addEventListener("click", () => {
+      // Play music only once
+      if (music.paused) {
+        music.play().catch(err => console.log("Autoplay blocked:", err));
+      }
+
+      // Hide teddy screen
+      startScreen.style.display = "none";
+
+      // Show countdown
+      countdownEl.style.display = "block";
+
+      // Start countdown
+      let count = 10;
+      countdownEl.textContent = count;
+      const timer = setInterval(() => {
+        count--;
+        if (count >= 0) {
+          countdownEl.textContent = count;
+        }
+        if (count < 0) {
+          clearInterval(timer);
+          window.location.href = "page2.html"; // Go to next page
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
