@@ -20,7 +20,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(255,255,255,0.9);
+      background: transparent; /* same as page background */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,19 +29,32 @@
       text-align: center;
     }
 
-    #startScreen img {
-      width: 200px;
+    .teddy-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .teddy-container img {
+      width: 220px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-    #startScreen img:hover {
+
+    .teddy-container:hover img {
       transform: scale(1.1);
     }
-    #startText {
-      font-size: 1.5rem;
-      margin-top: 15px;
-      color: #ff4d6d;
+
+    /* Text inside teddy heart */
+    .tap-text {
+      position: absolute;
+      top: 60%;   /* adjust depending on teddy image */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 1.2rem;
       font-weight: bold;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+      pointer-events: none; /* clicks pass through to teddy */
     }
 
     /* Countdown */
@@ -62,43 +75,4 @@
   </audio>
 
   <!-- Start Screen -->
-  <div id="startScreen">
-    <img src="teddy1.webp" alt="Tap Teddy">  <!-- apna teddy bear image use karo -->
-    <div id="startText">💖 Tap Teddy to Start 💖</div>
-  </div>
-
-  <!-- Countdown -->
-  <div id="countdown">10</div>
-
-  <script>
-    const music = document.getElementById("bg-music");
-    const startScreen = document.getElementById("startScreen");
-    const countdownEl = document.getElementById("countdown");
-
-    document.querySelector("#startScreen img").addEventListener("click", () => {
-      // Start music
-      music.play();
-
-      // Hide teddy screen
-      startScreen.style.display = "none";
-
-      // Show countdown
-      countdownEl.style.display = "block";
-
-      // Start countdown
-      let count = 10;
-      countdownEl.textContent = count;
-      const timer = setInterval(() => {
-        count--;
-        if (count >= 0) {
-          countdownEl.textContent = count;
-        }
-        if (count < 0) {
-          clearInterval(timer);
-          window.location.href = "page2.html"; // Go to next page
-        }
-      }, 1000);
-    });
-  </script>
-</body>
-</html>
+  <div id="st
