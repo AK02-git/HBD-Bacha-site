@@ -19,7 +19,7 @@ function floatingEmojis() {
 function launchConfetti() {
   for (let i = 0; i < 60; i++) {
     const confetti = document.createElement("div");
-    confetti.innerHTML = "🎉";
+    confetti.innerHTML = "";
     confetti.style.position = "fixed";
     confetti.style.left = Math.random() * window.innerWidth + "px";
     confetti.style.top = -50 + "px";
