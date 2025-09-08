@@ -15,12 +15,26 @@
       overflow: hidden;
     }
 
-    /* Teddy overlay */
+    /* Floating hearts animation */
+    .heart {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center/cover;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(100vh) scale(0.6); opacity: 0; }
+      50% { opacity: 1; }
+      to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Start Screen */
     #startScreen {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: transparent; /* same as page background */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -29,32 +43,21 @@
       text-align: center;
     }
 
-    .teddy-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .teddy-container img {
-      width: 220px;
+    #startScreen img {
+      width: 230px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
-
-    .teddy-container:hover img {
-      transform: scale(1.1);
+    #startScreen img:hover {
+      transform: scale(1.08);
     }
-
-    /* Text inside teddy heart */
-    .tap-text {
+    #tapText {
       position: absolute;
-      top: 60%;   /* adjust depending on teddy image */
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: bold;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-      pointer-events: none; /* clicks pass through to teddy */
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      margin-top: 120px; /* text on teddy's heart */
     }
 
     /* Countdown */
@@ -74,12 +77,17 @@
     Your browser does not support the audio element.
   </audio>
 
+  <!-- Floating hearts (multiple) -->
+  <div class="heart" style="left:10%; animation-delay:0s;"></div>
+  <div class="heart" style="left:30%; animation-delay:2s;"></div>
+  <div class="heart" style="left:50%; animation-delay:4s;"></div>
+  <div class="heart" style="left:70%; animation-delay:1s;"></div>
+  <div class="heart" style="left:90%; animation-delay:3s;"></div>
+
   <!-- Start Screen -->
   <div id="startScreen">
-    <div class="teddy-container">
-      <img id="teddy" src="teddy1.webp" alt="Tap Teddy">
-      <div class="tap-text">💖 Tap Here 💖</div>
-    </div>
+    <img id="teddy" src="teddy.png" alt="Tap Teddy"> <!-- Apna teddy image -->
+    <div id="tapText">💖 Tap Here 💖</div>
   </div>
 
   <!-- Countdown -->
@@ -89,12 +97,11 @@
     const music = document.getElementById("bg-music");
     const startScreen = document.getElementById("startScreen");
     const countdownEl = document.getElementById("countdown");
-    const teddy = document.getElementById("teddy");
 
-    teddy.addEventListener("click", () => {
-      // Play music only once
+    document.getElementById("teddy").addEventListener("click", () => {
+      // Play music once
       if (music.paused) {
-        music.play().catch(err => console.log("Autoplay blocked:", err));
+        music.play();
       }
 
       // Hide teddy screen
@@ -113,7 +120,7 @@
         }
         if (count < 0) {
           clearInterval(timer);
-          window.location.href = "page2.html"; // Go to next page
+          window.location.href = "page2.html";
         }
       }, 1000);
     });
