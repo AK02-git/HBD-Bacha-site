@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Birthday Note 💌</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -15,60 +19,83 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #ffe6f2;
+      background: linear-gradient(135deg, #ffe6f2, #fff0f5);
       font-family: 'Poppins', sans-serif;
       padding: 20px;
     }
 
     .card {
       width: 100%;
-      max-width: 700px;
-      background: white;
-      padding: 30px 25px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      text-align: left;
+      max-width: 720px;
+      background: #fff;
+      padding: 35px 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       animation: fadeIn 1s ease-in-out;
     }
 
     h2 {
       color: #ff4d6d;
-      margin-bottom: 15px;
-      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-size: 2.8rem;
       text-align: center;
+      font-family: 'Great Vibes', cursive;
+      position: relative;
+    }
+
+    h2::after {
+      content: "💖";
+      position: absolute;
+      right: -30px;
+      top: 10px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .message {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #333;
-      line-height: 1.7;
+      line-height: 1.8;
       white-space: pre-line;
+      background: #fff7fb;
+      padding: 20px;
+      border-radius: 15px;
+      border-left: 4px solid #ff4d6d;
+      margin-top: 20px;
     }
 
     .signature {
       margin-top: 30px;
-      font-size: 1.2rem;
-      font-weight: bold;
+      font-size: 1.3rem;
+      font-weight: 600;
       text-align: right;
-      color: #ff4d6d;
+      color: #e6004c;
+      font-style: italic;
     }
 
     button {
-      margin: 30px auto 0;
-      padding: 14px 30px;
+      margin: 35px auto 0;
+      padding: 15px 35px;
       background: #ff4d6d;
       border: none;
       color: white;
-      border-radius: 25px;
+      border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 1.2rem;
-      transition: background-color 0.3s ease;
+      font-size: 1.25rem;
+      transition: all 0.3s ease;
       display: block;
+      box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
     }
 
     button:hover {
-      background: #e6004c;
+      background: #cc0040;
+      transform: scale(1.05);
     }
 
     @keyframes fadeIn {
@@ -78,10 +105,10 @@
 
     @media (max-width: 480px) {
       h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       .message {
-        font-size: 1rem;
+        font-size: 1.05rem;
       }
       button {
         font-size: 1.1rem;
@@ -98,8 +125,9 @@
 </audio>
 
 <div class="card">
-  <h2>My Dearest Love ❤️</h2>
-  <h2>💌 A Little Note</h2>
+  <h2>My Dearest Love</h2>
+  <h2>A Little Note</h2>
+
   <div class="message">
     Hii Bacha, so finally hum iss year apke sath hai apke birthday par 😁♥️  
     It is the thing that I am waiting from so long 🤩  
@@ -131,7 +159,7 @@
   </div>
 
   <div class="signature">
-    Forever Yours ♥️, <br>
+    Forever Yours ♥️,<br>
     Aman
   </div>
 
