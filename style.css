@@ -1,39 +1,54 @@
 /* style.css — safer, non-invasive defaults */
 
 /* root color variables */
-:root{
-  --accent:#ff3399;
-  --accent-2:#ff66cc;
-  --btn-bg:#ff3399;
-  --btn-bg-hover:#ff66cc;
+:root {
+  --accent: #ff3399;
+  --accent-2: #ff66cc;
+  --btn-bg: #ff3399;
+  --btn-bg-hover: #ff66cc;
 }
 
-/* Body background gradient is only applied if the page adds .gradient-bg class to <body> */
+/* ===== Optional Animated Background ===== */
+/* Use <body class="gradient-bg"> to activate */
 body.gradient-bg {
   min-height: 100vh;
-  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-  background-size: 800% 800%;
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background-size: 400% 400%;
   font-family: 'Poppins', sans-serif;
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 12s ease infinite;
   margin: 0;
   padding: 0;
+  display: flex;                /* Center content */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Keep pages free to set their own backgrounds and scrolling */
+/* Pages that need scrolling → add .scroll-page */
+body.scroll-page {
+  display: block;       /* Normal block layout */
+  min-height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Gradient animation keyframes */
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Headings default: do not force a color — pages can style headings individually */
+/* ===== Headings ===== */
 h1, h2, p {
   margin: 0;
   padding: 0;
   line-height: 1.2;
 }
 
-/* Buttons (shared style) */
+/* ===== Buttons ===== */
 button {
   padding: 12px 24px;
   border: none;
@@ -50,7 +65,7 @@ button:hover {
   background: var(--btn-bg-hover);
 }
 
-/* Gallery fallback styles (pages can override more specific rules) */
+/* ===== Gallery ===== */
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -58,7 +73,8 @@ button:hover {
   gap: 15px;
 }
 .gallery img {
-  width: 200px;
+  width: 100%;
+  max-width: 220px;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
@@ -68,11 +84,16 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* small utility classes */
+/* ===== Utilities ===== */
 .center { text-align: center; }
 .hidden { display: none !important; }
 
-/* Small responsive helpers */
-@media (min-width: 768px){
-  .gallery img { width: 220px; }
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  body.scroll-page {
+    padding: 10px;
+  }
+  .gallery img {
+    max-width: 160px;
+  }
 }
