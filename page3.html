@@ -15,15 +15,11 @@
 
     body {
       margin: 0;
-      overflow: hidden;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background: linear-gradient(135deg, #ffe6f2, #fff0f5);
       font-family: 'Poppins', sans-serif;
-      padding: 20px;
+      padding: 40px 20px;
       position: relative;
+      overflow-y: auto; /* Enable scroll */
     }
 
     .card {
@@ -36,6 +32,7 @@
       animation: fadeIn 1s ease-in-out;
       position: relative;
       z-index: 10;
+      margin: 0 auto;
     }
 
     h2 {
@@ -135,7 +132,7 @@
 </head>
 <body>
 
-<!-- Background music -->
+<!-- Background Music -->
 <audio id="bg-music" autoplay loop>
   <source src="audio1.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
@@ -167,7 +164,7 @@
   <button onclick="window.location.href='page4.html'">Click Here</button>
 </div>
 
-<!-- Typing Animation & Music Fade -->
+<!-- Typing animation + music fade-in + auto-scroll -->
 <script>
   const message = `
 Hii Bacha, so finally hum iss year apke sath hai apke birthday par 😁♥️  
@@ -206,13 +203,20 @@ Happy Birthday Jaan 🎂🎉🎁😘
     if (i < message.length) {
       typedEl.innerHTML += message.charAt(i);
       i++;
+
+      // Auto-scroll as it types
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+
       setTimeout(typeWriter, 30); // Typing speed
     }
   }
 
   typeWriter();
 
-  // Music fade-in
+  // 🎵 Fade-in background music
   const bgMusic = document.getElementById('bg-music');
   bgMusic.volume = 0;
   let fadeInterval = setInterval(() => {
@@ -221,7 +225,7 @@ Happy Birthday Jaan 🎂🎉🎁😘
     } else {
       clearInterval(fadeInterval);
     }
-  }, 300);
+  }, 300); // Every 300ms
 </script>
 
 </body>
