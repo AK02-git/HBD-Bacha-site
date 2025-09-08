@@ -16,20 +16,20 @@ function floatingEmojis() {
 }
 
 // 🎉 Confetti burst
-function launchConfetti() {
-  for (let i = 0; i < 60; i++) {
-    const confetti = document.createElement("div");
-    confetti.innerHTML = "";
-    confetti.style.position = "fixed";
-    confetti.style.left = Math.random() * window.innerWidth + "px";
-    confetti.style.top = -50 + "px";
-    confetti.style.fontSize = "20px";
-    confetti.style.animation = "fall 3s linear forwards";
-    document.body.appendChild(confetti);
+// function launchConfetti() {
+//   for (let i = 0; i < 60; i++) {
+//     const confetti = document.createElement("div");
+//     confetti.innerHTML = "";
+//     confetti.style.position = "fixed";
+//     confetti.style.left = Math.random() * window.innerWidth + "px";
+//     confetti.style.top = -50 + "px";
+//     confetti.style.fontSize = "20px";
+//     confetti.style.animation = "fall 3s linear forwards";
+//     document.body.appendChild(confetti);
 
-    setTimeout(() => confetti.remove(), 3000);
-  }
-}
+//     setTimeout(() => confetti.remove(), 3000);
+//   }
+// }
 
 // ✨ CSS Animations
 const style = document.createElement("style");
